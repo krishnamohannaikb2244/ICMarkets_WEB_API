@@ -18,10 +18,10 @@ namespace ICMarkets.Repository.Repositories
             await _context.BlockchainHistory.AddAsync(data);
         }
 
-        public async Task<IEnumerable<BlockchainData>> GetHistoryAsync(string name)
+        public async Task<IEnumerable<BlockchainData>> GetHistoryAsync(string keyword)
         {
             return await _context.BlockchainHistory
-                .Where(x => x.Name.ToLower() == name.ToLower())
+                .Where(x => x.Name.ToLower().Contains(keyword.ToLower()))
                 .OrderByDescending(x => x.CreatedAt)
                 .ToListAsync();
         }

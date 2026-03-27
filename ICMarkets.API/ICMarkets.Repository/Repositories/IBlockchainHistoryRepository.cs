@@ -5,6 +5,6 @@ namespace ICMarkets.Repository.Repositories
     public interface IBlockchainHistoryRepository
     {
         Task AddAsync(BlockchainData data);
-        Task<IEnumerable<BlockchainData>> GetHistoryAsync(string name);
+        Task<IEnumerable<BlockchainData>> GetHistoryAsync(string keyword);
     }
 }
