@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
@@ -15,6 +19,7 @@
     <ProjectReference Include="..\ICMarkets.Models\ICMarkets.Models.csproj" />
     <ProjectReference Include="..\ICMarkets.Common\ICMarkets.Common.csproj" />
     <ProjectReference Include="..\ICMarkets.Services\ICMarkets.Services.csproj" />
+    <ProjectReference Include="..\ICMarkets.Repository\ICMarkets.Repository.csproj" />
   </ItemGroup>
 
 </Project>

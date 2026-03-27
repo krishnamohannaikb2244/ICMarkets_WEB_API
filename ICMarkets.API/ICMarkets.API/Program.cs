@@ -1,7 +1,12 @@
 using ICMarkets.API.Helpers;
+using ICMarkets.Repository.Data;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<BlockchainDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
