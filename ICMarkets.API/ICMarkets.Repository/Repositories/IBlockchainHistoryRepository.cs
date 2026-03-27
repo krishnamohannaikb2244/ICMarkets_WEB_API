@@ -1,8 +1,8 @@
 using ICMarkets.Models;
 
-namespace ICMarkets.Repository.DAO
+namespace ICMarkets.Repository.Repositories
 {
-    public interface IBlockchainHistoryDao
+    public interface IBlockchainHistoryRepository
     {
         Task AddAsync(BlockchainData data);
         Task<IEnumerable<BlockchainData>> GetHistoryAsync(string name);

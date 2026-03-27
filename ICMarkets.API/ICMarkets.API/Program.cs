@@ -1,6 +1,8 @@
-using ICMarkets.API.Helpers;
+using ICMarkets.Services;
+using ICMarkets.Services.Helpers;
 using ICMarkets.Repository.Data;
-using ICMarkets.Repository.DAO;
+using ICMarkets.Repository.UOW;
+using ICMarkets.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 
@@ -20,7 +22,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient<IBlockcypherHelper, BlockcypherHelper>();
 builder.Services.AddScoped<IBlockcypherHelper, BlockcypherHelper>();
-builder.Services.AddScoped<IBlockchainHistoryDao, BlockchainHistoryDao>();
+builder.Services.AddScoped<IBlockchainHistoryRepository, BlockchainHistoryRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IBlockchainService, BlockchainService>();
 
 var app = builder.Build();
 

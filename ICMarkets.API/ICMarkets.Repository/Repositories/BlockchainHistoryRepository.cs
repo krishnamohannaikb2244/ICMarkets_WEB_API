@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using ICMarkets.Models;
 using ICMarkets.Repository.Data;
 
-namespace ICMarkets.Repository.DAO
+namespace ICMarkets.Repository.Repositories
 {
-    public class BlockchainHistoryDao : IBlockchainHistoryDao
+    public class BlockchainHistoryRepository : IBlockchainHistoryRepository
     {
         private readonly BlockchainDbContext _context;
 
-        public BlockchainHistoryDao(BlockchainDbContext context)
+        public BlockchainHistoryRepository(BlockchainDbContext context)
         {
             _context = context;
         }
@@ -16,7 +16,6 @@ namespace ICMarkets.Repository.DAO
         public async Task AddAsync(BlockchainData data)
         {
             await _context.BlockchainHistory.AddAsync(data);
-            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<BlockchainData>> GetHistoryAsync(string name)

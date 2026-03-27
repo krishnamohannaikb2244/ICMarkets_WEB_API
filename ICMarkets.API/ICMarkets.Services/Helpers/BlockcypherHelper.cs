@@ -1,8 +1,9 @@
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using ICMarkets.Models;
 
-namespace ICMarkets.API.Helpers
+namespace ICMarkets.Services.Helpers
 {
     public interface IBlockcypherHelper
     {
