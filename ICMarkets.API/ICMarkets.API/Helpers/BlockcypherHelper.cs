@@ -1,4 +1,5 @@
-using System.Text.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using ICMarkets.Models;
 
 namespace ICMarkets.API.Helpers
@@ -13,11 +14,19 @@ namespace ICMarkets.API.Helpers
         private readonly HttpClient _httpClient;
         private readonly ILogger<BlockcypherHelper> _logger;
         private const string BaseUrl = "https://api.blockcypher.com/v1/";
+        private readonly JsonSerializerSettings _jsonSettings;
 
         public BlockcypherHelper(HttpClient httpClient, ILogger<BlockcypherHelper> logger)
         {
             _httpClient = httpClient;
             _logger = logger;
+            _jsonSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                }
+            };
         }
 
         public async Task<BlockchainResponse?> GetBlockchainDataAsync(string blockchain, string network = "main")
@@ -30,7 +39,7 @@ namespace ICMarkets.API.Helpers
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
-                var data = JsonSerializer.Deserialize<BlockchainResponse>(content);
+                var data = JsonConvert.DeserializeObject<BlockchainResponse>(content, _jsonSettings);
 
                 if (data != null)
                 {
